@@ -49,26 +49,28 @@ header {
   display: flex;
   height: 32px;
   font-size: 18px;
+  list-style: none;
   .degree-ico {
     margin-right: 10px;
     font-size: 24px;
     color: rgba(255, 255, 255, 0.4);
   }
-  .celsius,
-  .fahrenheit {
+
+  .degree-type {
     border: 1px solid rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.4);
     padding: 5px 15px;
     cursor: pointer;
   }
-  .celsius {
-    border-right: none;
-    border-top-left-radius: 8px;
-    border-bottom-left-radius: 8px;
-  }
-  .fahrenheit {
+  .degree-type:last-child {
     border-left: none;
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
+  }
+  .degree-type:nth-child(2) {
+    border-right: none;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
   }
 
   .active {
@@ -86,16 +88,20 @@ header {
 .weather-block {
   display: flex;
   font-size: 120px;
-  justify-content: space-evenly;
 
   .weather-number {
     font-family: 'Lato', sans-serif;
+    margin-left: 15px;
+  }
+  .weather-ico {
+    margin-right: 15px;
   }
 }
 .weather-description {
   text-align: center;
   font-size: 26px;
   margin-top: 10px;
+  text-transform: capitalize;
 }
 
 .weather-details {

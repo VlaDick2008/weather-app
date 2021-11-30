@@ -1,15 +1,25 @@
 import React from 'react';
 
-export default function DegreeBlock() {
+export default function DegreeBlock({ items }) {
+  const degreeRef = React.useRef();
+  const [activeItem, setActiveItem] = React.useState(0);
+
+  const onSelectItem = (index) => {
+    setActiveItem(index);
+  };
+
   return (
-    <div className="degree-block">
-      <div className="degree-ico">º</div>
-      <div onClick={[]} className="celsius active">
-        C
-      </div>
-      <div onClick={[]} className="fahrenheit">
-        F
-      </div>
-    </div>
+    <ul ref={degreeRef} className="degree-block">
+      <li className="degree-ico">º</li>
+
+      {items.map((degree, index) => (
+        <li
+          onClick={() => onSelectItem(index)}
+          className={activeItem === index ? 'degree-type active' : 'degree-type'}
+          key={`${degree.type}_${index}`}>
+          {degree}
+        </li>
+      ))}
+    </ul>
   );
 }
