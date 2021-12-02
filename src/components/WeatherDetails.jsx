@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function WeatherDetails({ weatherInfo, forecast }) {
+export default function WeatherDetails({ weatherInfo }) {
   if (typeof weatherInfo.weather != 'undefined') {
     var compassPoints = [
       'северный',
@@ -23,8 +23,6 @@ export default function WeatherDetails({ weatherInfo, forecast }) {
     const rawPosition = Math.floor(weatherInfo.wind.deg / 22.5 + 0.5);
     var arrayPosition = rawPosition % 16;
   }
-
-  console.log(forecast);
 
   return (
     <div className="weather-details">

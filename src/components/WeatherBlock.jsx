@@ -1,15 +1,15 @@
 import React from 'react';
 import sun from '../img/sun.svg';
+import rain from '../img/cloudy.svg';
 
 export default function WeatherBlock({ weatherInfo }) {
-  console.log(weatherInfo);
   return (
     <div>
       {typeof weatherInfo.weather != 'undefined' ? (
         <div className="weather-block-wrapper">
           <div className="weather-block">
             <div className="weather-ico">
-              <img src={sun} alt="" />
+              <img src={weatherInfo.cod === 200 ? sun : rain} alt="" />
             </div>
             <div className="weather-number">{Math.floor(weatherInfo.main.temp)}º</div>
           </div>
@@ -21,7 +21,3 @@ export default function WeatherBlock({ weatherInfo }) {
     </div>
   );
 }
-
-// <div className="weather-number">{Math.floor(info.data.main.temp)}º</div>
-// </div>
-// <div className="weather-description">{info.data.weather[0].description}</div>
