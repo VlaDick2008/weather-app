@@ -58,6 +58,7 @@ function App() {
           updatePositionData={updatePositionData}
           cici={city}
           updateCityData={updateCityData}
+          cityChange={cityChange}
         />
         <DegreeBlock items={['C', 'F']} />
       </header>

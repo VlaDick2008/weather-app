@@ -5,14 +5,24 @@ import locationImg from '../img/location.svg';
 function SityBlock({ updateCityData, cici, updatePositionData }) {
   const changeSityBtn = React.useRef();
   const [inputValue, setInputValue] = React.useState(cici);
+  const [position, positionChange] = React.useState('');
 
   const success = (position) => {
     updatePositionData(position);
+    positionChange(position);
   };
 
-  const handleChange = () => {
-    setInputValue(changeSityBtn.value);
-  };
+  React.useLayoutEffect(() => {
+    if (typeof position.coords !== 'undefined') {
+      fetch(
+        `https://nominatim.openstreetmap.org/reverse?lat=${position.coords.latitude}&lon=${position.coords.longitude}&format=json&addressdetails=[0|1]`,
+      )
+        .then((resp) => resp.json())
+        .then((result) => {
+          setInputValue(result.address.city);
+        });
+    }
+  });
 
   const removeDisabled = () => {
     changeSityBtn.current.removeAttribute('disabled');
@@ -24,8 +34,8 @@ function SityBlock({ updateCityData, cici, updatePositionData }) {
         value={inputValue}
         placeholder="Ваш город здесь..."
         type="text"
-        onChange={() => {
-          handleChange();
+        onChange={(e) => {
+          setInputValue(e.target.value);
         }}
         onKeyDown={(e) => {
           if (e.key === 'Enter') {
@@ -49,7 +59,7 @@ function SityBlock({ updateCityData, cici, updatePositionData }) {
         <div
           onClick={() => {
             navigator.geolocation.getCurrentPosition(success);
-            setInputValue(cici);
+            console.log(inputValue);
           }}
           className="your-position">
           Моё местоположение
