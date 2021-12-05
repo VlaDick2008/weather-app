@@ -1,11 +1,12 @@
 import React from 'react';
 
-export default function DegreeBlock({ items }) {
+export default function DegreeBlock({ updateDegreeIndex, items }) {
   const degreeRef = React.useRef();
   const [activeItem, setActiveItem] = React.useState(0);
 
   const onSelectItem = (index) => {
     setActiveItem(index);
+    updateDegreeIndex(index);
   };
 
   return (

@@ -22,7 +22,7 @@ function SityBlock({ updateCityData, cici, updatePositionData }) {
           setInputValue(result.address.city);
         });
     }
-  });
+  }, [position.coords]);
 
   const removeDisabled = () => {
     changeSityBtn.current.removeAttribute('disabled');

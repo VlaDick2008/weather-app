@@ -10,6 +10,7 @@ function App() {
   const [info, weatherData] = React.useState('');
   const [city, cityChange] = React.useState('Омск');
   const [position, positionChange] = React.useState('');
+  const [degreeIndex, setDegreeIndex] = React.useState('');
 
   const apiKey = '12cefab9977763ddc5f50d7e363a40f8';
   const apiBase = 'http://api.openweathermap.org/data/2.5/';
@@ -17,12 +18,14 @@ function App() {
 
   const updateCityData = (value) => {
     cityChange(value);
-    console.log('обновил сити');
   };
 
   const updatePositionData = (position) => {
     positionChange(position);
-    console.log('обновил поситион');
+  };
+
+  const updateDegreeIndex = (index) => {
+    setDegreeIndex(index);
   };
 
   React.useLayoutEffect(() => {
@@ -33,7 +36,6 @@ function App() {
         .then((resp) => resp.json())
         .then((result) => {
           cityChange(result.address.city);
-          console.log('определил координаты');
         });
     }
   }, [position.coords]);
@@ -43,7 +45,6 @@ function App() {
       .then((resp) => resp.json())
       .then((result) => {
         weatherData(result);
-        console.log('получил город');
       });
   }, [apiCity]);
 
@@ -60,9 +61,9 @@ function App() {
           updateCityData={updateCityData}
           cityChange={cityChange}
         />
-        <DegreeBlock items={['C', 'F']} />
+        <DegreeBlock updateDegreeIndex={updateDegreeIndex} items={['C', 'F']} />
       </header>
-      <WeatherBlock weatherInfo={info} />
+      <WeatherBlock degreeIndex={degreeIndex} weatherInfo={info} />
       <WeatherDetails weatherInfo={info} />
     </div>
   );
