@@ -44,7 +44,9 @@ export default function WeatherDetails({ weatherInfo }) {
           </div>
           <div className="weather-details-block">
             <div className="weather-details-title">Вероятность дождя</div>
-            <div className="weather-details-text">10%</div>
+            <div className="weather-details-text">
+              {Math.floor(Math.random() * (101 - 1 + 1) + 1)}%
+            </div>
           </div>
         </div>
       ) : (

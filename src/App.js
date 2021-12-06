@@ -36,6 +36,7 @@ function App() {
         .then((resp) => resp.json())
         .then((result) => {
           cityChange(result.address.city);
+          console.log(result);
         });
     }
   }, [position.coords]);
@@ -47,10 +48,6 @@ function App() {
         weatherData(result);
       });
   }, [apiCity]);
-
-  React.useLayoutEffect(() => {
-    document.querySelector('body').classList.add('sunny');
-  }, []);
 
   return (
     <div className="main-wrapper">

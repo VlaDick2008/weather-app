@@ -3,9 +3,11 @@ import React from 'react';
 import locationImg from '../img/location.svg';
 
 function SityBlock({ updateCityData, cici, updatePositionData }) {
+  const changeInput = React.useRef();
   const changeSityBtn = React.useRef();
   const [inputValue, setInputValue] = React.useState(cici);
   const [position, positionChange] = React.useState('');
+  const [inputState, enableInput] = React.useState(false);
 
   const success = (position) => {
     updatePositionData(position);
@@ -24,9 +26,20 @@ function SityBlock({ updateCityData, cici, updatePositionData }) {
     }
   }, [position.coords]);
 
-  const removeDisabled = () => {
-    changeSityBtn.current.removeAttribute('disabled');
-  };
+  // const handleOutsideClick = (e) => {
+  //   if (!e.path.includes(changeSityBtn.current || changeInput.current)) {
+  //     enableInput(false);
+  //     console.log(e.path);
+  //   }
+  // };
+
+  React.useEffect(() => {
+    if (inputState === true) {
+      changeInput.current.removeAttribute('disabled');
+    } else if (inputState === false) {
+      changeInput.current.setAttribute('disabled', 'disabled');
+    }
+  }, [inputState]);
 
   return (
     <div className="sity-block">
@@ -39,18 +52,20 @@ function SityBlock({ updateCityData, cici, updatePositionData }) {
         }}
         onKeyDown={(e) => {
           if (e.key === 'Enter') {
-            updateCityData(changeSityBtn.current.value);
+            updateCityData(changeInput.current.value);
+            changeInput.current.setAttribute('disabled', 'disabled');
           }
         }}
-        ref={changeSityBtn}
+        ref={changeInput}
         disabled
         className="sity-name"
         itemID="sity-name"
       />
       <div className="change-sity-block">
         <div
+          ref={changeSityBtn}
           onClick={() => {
-            removeDisabled();
+            enableInput(!inputState);
           }}
           className="change-sity">
           Сменить город
@@ -59,7 +74,6 @@ function SityBlock({ updateCityData, cici, updatePositionData }) {
         <div
           onClick={() => {
             navigator.geolocation.getCurrentPosition(success);
-            console.log(inputValue);
           }}
           className="your-position">
           Моё местоположение
