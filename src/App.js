@@ -36,7 +36,6 @@ function App() {
         .then((resp) => resp.json())
         .then((result) => {
           cityChange(result.address.city);
-          console.log(result);
         });
     }
   }, [position.coords]);
