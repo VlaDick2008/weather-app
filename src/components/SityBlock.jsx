@@ -53,7 +53,7 @@ function SityBlock({ updateCityData, cici, updatePositionData }) {
         onKeyDown={(e) => {
           if (e.key === 'Enter') {
             updateCityData(changeInput.current.value);
-            changeInput.current.setAttribute('disabled', 'disabled');
+            enableInput(!inputState);
           }
         }}
         ref={changeInput}
