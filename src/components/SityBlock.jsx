@@ -6,7 +6,7 @@ function SityBlock({ updateCityData, cici, updatePositionData }) {
   const changeInput = React.useRef();
   const changeSityBtn = React.useRef();
   const [inputValue, setInputValue] = React.useState(cici);
-  const [position, positionChange] = React.useState('');
+  const [position, positionChange] = React.useState({});
   const [inputState, enableInput] = React.useState(false);
 
   const success = (position) => {
@@ -25,13 +25,6 @@ function SityBlock({ updateCityData, cici, updatePositionData }) {
         });
     }
   }, [position.coords]);
-
-  // const handleOutsideClick = (e) => {
-  //   if (!e.path.includes(changeSityBtn.current || changeInput.current)) {
-  //     enableInput(false);
-  //     console.log(e.path);
-  //   }
-  // };
 
   React.useEffect(() => {
     if (inputState === true) {

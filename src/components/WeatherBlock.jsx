@@ -10,6 +10,7 @@ import fog from '../img/fog.svg';
 import drizzle from '../img/drizzle.svg';
 
 export default function WeatherBlock({ degreeIndex, weatherInfo }) {
+  const weatherImage = React.useRef();
   const [degree, setDegree] = React.useState('');
   const [image, setImage] = React.useState('');
 
@@ -28,6 +29,14 @@ export default function WeatherBlock({ degreeIndex, weatherInfo }) {
         case 232:
           setImage(strom);
           document.querySelector('body').classList.add('storm');
+          weatherImage.current.classList.add('stormImg');
+          weatherImage.current.classList.remove(
+            'cloudyImg',
+            'fogImg',
+            'snowImg',
+            'rainImg',
+            'drizzleImg',
+          );
           document
             .querySelector('body')
             .classList.remove('sunny', 'cloudy', 'rain', 'storm', 'fog', 'drizzle');
@@ -41,24 +50,34 @@ export default function WeatherBlock({ degreeIndex, weatherInfo }) {
         case 313:
         case 314:
         case 321:
-          setImage(drizzle);
-          document.querySelector('body').classList.add('drizzle');
-          document
-            .querySelector('body')
-            .classList.remove('sunny', 'cloudy', 'rain', 'storm', 'fog');
-          break;
         case 500:
         case 501:
         case 502:
           setImage(drizzle);
           document.querySelector('body').classList.add('drizzle');
+          weatherImage.current.classList.add('drizzleImg');
+          weatherImage.current.classList.remove(
+            'cloudyImg',
+            'fogImg',
+            'snowImg',
+            'rainImg',
+            'stormImg',
+          );
           document
             .querySelector('body')
-            .classList.remove('sunny', 'cloudy', 'storm', 'fog', 'drizzle');
+            .classList.remove('sunny', 'cloudy', 'rain', 'storm', 'fog');
           break;
         case 511:
           setImage(snow);
           document.querySelector('body').classList.add('snow');
+          weatherImage.current.classList.add('snowImg');
+          weatherImage.current.classList.remove(
+            'cloudyImg',
+            'fogImg',
+            'rainImg',
+            'drizzleImg',
+            'stormImg',
+          );
           document
             .querySelector('body')
             .classList.remove('sunny', 'cloudy', 'rain', 'storm', 'fog', 'drizzle');
@@ -71,6 +90,14 @@ export default function WeatherBlock({ degreeIndex, weatherInfo }) {
         case 531:
           setImage(rain);
           document.querySelector('body').classList.add('rain');
+          weatherImage.current.classList.add('rainImg');
+          weatherImage.current.classList.remove(
+            'cloudyImg',
+            'fogImg',
+            'snowImg',
+            'drizzleImg',
+            'stormImg',
+          );
           document
             .querySelector('body')
             .classList.remove('sunny', 'cloudy', 'storm', 'fog', 'drizzle');
@@ -88,6 +115,14 @@ export default function WeatherBlock({ degreeIndex, weatherInfo }) {
         case 622:
           setImage(snow);
           document.querySelector('body').classList.add('snow');
+          weatherImage.current.classList.add('snowImg');
+          weatherImage.current.classList.remove(
+            'cloudyImg',
+            'fogImg',
+            'rainImg',
+            'drizzleImg',
+            'stormImg',
+          );
           document
             .querySelector('body')
             .classList.remove('sunny', 'cloudy', 'rain', 'storm', 'fog', 'drizzle');
@@ -104,6 +139,14 @@ export default function WeatherBlock({ degreeIndex, weatherInfo }) {
         case 781:
           setImage(fog);
           document.querySelector('body').classList.add('fog');
+          weatherImage.current.classList.add('fogImg');
+          weatherImage.current.classList.remove(
+            'cloudyImg',
+            'snowImg',
+            'rainImg',
+            'drizzleImg',
+            'stormImg',
+          );
           document
             .querySelector('body')
             .classList.remove('sunny', 'cloudy', 'rain', 'storm', 'snow', 'drizzle');
@@ -111,6 +154,15 @@ export default function WeatherBlock({ degreeIndex, weatherInfo }) {
         case 800:
           setImage(sun);
           document.querySelector('body').classList.add('sunny');
+          weatherImage.current.classList.add('sunnyImg');
+          weatherImage.current.classList.remove(
+            'cloudyImg',
+            'fogImg',
+            'snowImg',
+            'rainImg',
+            'drizzleImg',
+            'stormImg',
+          );
           document
             .querySelector('body')
             .classList.remove('snow', 'cloudy', 'rain', 'storm', 'fog', 'drizzle');
@@ -118,6 +170,14 @@ export default function WeatherBlock({ degreeIndex, weatherInfo }) {
         case 801:
           setImage(partly_cloudy);
           document.querySelector('body').classList.add('cloudy');
+          weatherImage.current.classList.add('cloudyImg');
+          weatherImage.current.classList.remove(
+            'fogImg',
+            'snowImg',
+            'rainImg',
+            'drizzleImg',
+            'stormImg',
+          );
           document
             .querySelector('body')
             .classList.remove('sunny', 'snow', 'rain', 'storm', 'fog', 'drizzle');
@@ -125,6 +185,14 @@ export default function WeatherBlock({ degreeIndex, weatherInfo }) {
         case 802:
           setImage(cloudy);
           document.querySelector('body').classList.add('cloudy');
+          weatherImage.current.classList.add('cloudyImg');
+          weatherImage.current.classList.remove(
+            'fogImg',
+            'snowImg',
+            'rainImg',
+            'drizzleImg',
+            'stormImg',
+          );
           document
             .querySelector('body')
             .classList.remove('sunny', 'snow', 'rain', 'storm', 'fog', 'drizzle');
@@ -133,15 +201,32 @@ export default function WeatherBlock({ degreeIndex, weatherInfo }) {
         case 804:
           setImage(clouds);
           document.querySelector('body').classList.add('cloudy');
+          weatherImage.current.classList.add('cloudyImg');
+          weatherImage.current.classList.remove(
+            'fogImg',
+            'snowImg',
+            'rainImg',
+            'drizzleImg',
+            'stormImg',
+          );
           document
             .querySelector('body')
             .classList.remove('sunny', 'snow', 'rain', 'storm', 'fog', 'drizzle');
           break;
         default:
           document.querySelector('body').classList.add('sunny');
+          weatherImage.current.classList.add('sunnyImg');
+          weatherImage.current.classList.remove(
+            'cloudyImg',
+            'fogImg',
+            'snowImg',
+            'rainImg',
+            'drizzleImg',
+            'stormImg',
+          );
           document
             .querySelector('body')
-            .classList.remove('sunny', 'snow', 'rain', 'storm', 'fog', 'drizzle');
+            .classList.remove('snow', 'rain', 'storm', 'fog', 'drizzle');
           setImage(sun);
           break;
       }
@@ -149,12 +234,12 @@ export default function WeatherBlock({ degreeIndex, weatherInfo }) {
 
     if (typeof weatherInfo.weather !== 'undefined') {
       setDegree(weatherInfo.main.temp);
-    }
 
-    if (degreeIndex === 1) {
-      setDegree(weatherInfo.main.temp * 1.8 + 32);
-    } else if (degreeIndex === 0) {
-      setDegree(weatherInfo.main.temp);
+      if (degreeIndex === 1) {
+        setDegree(weatherInfo.main.temp * 1.8 + 32);
+      } else if (degreeIndex === 0) {
+        setDegree(weatherInfo.main.temp);
+      }
     }
   }, [setDegree, degreeIndex, weatherInfo]);
   return (
@@ -163,7 +248,7 @@ export default function WeatherBlock({ degreeIndex, weatherInfo }) {
         <div className="weather-block-wrapper">
           <div className="weather-block">
             <div className="weather-ico">
-              <img src={image} alt="weather_ico" />
+              <img ref={weatherImage} src={image} alt="weather_ico" />
             </div>
             <div className="weather-number">{Math.floor(degree)}º</div>
           </div>
@@ -178,5 +263,3 @@ export default function WeatherBlock({ degreeIndex, weatherInfo }) {
     </div>
   );
 }
-
-// Math.floor(weatherInfo.main.temp)
