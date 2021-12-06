@@ -13,7 +13,7 @@ function App() {
   const [degreeIndex, setDegreeIndex] = React.useState('');
 
   const apiKey = '12cefab9977763ddc5f50d7e363a40f8';
-  const apiBase = 'http://api.openweathermap.org/data/2.5/';
+  const apiBase = 'https://api.openweathermap.org/data/2.5/';
   const apiCity = tr(city);
 
   const updateCityData = (value) => {
